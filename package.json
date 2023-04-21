@@ -1,0 +1,24 @@
+{
+  "name": "vihaan",
+  "version": "1.0.0",
+  "description": "vihaan project for hackathon",
+  "main": "index.js",
+  "scripts": {
+    "backend": "nodemon backend/bin/www",
+    "frontend": "npm run dev --prefix frontend",
+    "start": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Char-Coders/vihaan_6.O.git"
+  },
+  "author": "CharCoders",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Char-Coders/vihaan_6.O/issues"
+  },
+  "homepage": "https://github.com/Char-Coders/vihaan_6.O#readme",
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
