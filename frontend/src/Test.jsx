@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
+import axios from "axios";
 
 export default function Test() {
     const webcamRef = useRef(null);
@@ -39,14 +40,14 @@ export default function Test() {
             const blob = new Blob(recordedChunks, {
                 type: "video/webm",
             });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            document.body.appendChild(a);
-            a.style = "display: none";
-            a.href = url;
-            a.download = "react-webcam-stream-capture.webm";
-            a.click();
-            window.URL.revokeObjectURL(url);
+            let formData = new FormData();
+            formData.append("data", blob)
+            axios.post('/api/video/capture', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+            })
+
             setRecordedChunks([]);
         }
     }, [recordedChunks]);
