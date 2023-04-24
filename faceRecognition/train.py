@@ -4,10 +4,10 @@ import numpy as np
 #Web Camera 
 cap =cv2.VideoCapture(0)
 
-face_cascade=cv2.CascadeClassifier(r"C:\Users\rajesh gulati\WebDevelopmentProjects\vihaan\faceRecognition\haarcascade_frontalface_alt.xml")
+face_cascade=cv2.CascadeClassifier("./faceRecognition/haarcascade_frontalface_alt.xml")
 skip=0
 face_data=[]
-dataset_path=''
+dataset_path='./faceRecognition/traineddata/'
 face_section=[]
 
 #file_name=input("Enter your name : ")
@@ -61,8 +61,8 @@ print(face_data.shape)
 
 
 #Saving the data
-np.save(dataset_path+file_name+'.npy',face_data)
-print("Data successfully saved at ",dataset_path+file_name+'.npy')
+np.save(dataset_path + file_name +'.npy', face_data)
+print("Data successfully saved at ",dataset_path + file_name + '.npy')
 
 
 
