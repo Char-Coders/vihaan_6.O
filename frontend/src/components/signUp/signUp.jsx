@@ -22,7 +22,7 @@ export default function SignUp() {
                 <i class="fa-solid fa-lock" id="nameField"></i>
                 <input type="password" placeholder="Password"/>
             </div>
-            <p>Lost password <a href="">Click Here!</a></p>
+            <p>Lost password <a href="">    ``````      `Click Here!</a></p>
           </div>
           <div class="btn-field">
             <button type="button" id="signupBtn">Sign up</button>
