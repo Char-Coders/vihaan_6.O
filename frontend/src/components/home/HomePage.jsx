@@ -9,7 +9,7 @@ export default function Homepage() {
                 <nav>
                     <img src="/home/logo-removebg-preview.png" className="logo" />
                     <div>
-                        <button className="sign-up">Sign up</button>
+                        <a href="/signup"><button className="sign-up">Sign up</button></a>
                         <button className="sign-in">Sign in</button>
                     </div>
                     <div className="header-content">

@@ -1,21 +1,38 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./signUp.css"
 
 export default function SignUp() {
-
+    const initValues = { name: "", email: "", password: "" };
     const [title, setTitle] = useState('Sign Up');
-    const [disable, setDisable] = useState({signUp: false, signIn: true})
+    const [disable, setDisable] = useState({ signUp: false, signIn: true })
+    const [values, setValues] = useState(initValues)
+
+    function handleValueChange(e) {
+        setValues(prevValues => ({ ...prevValues, [e.target.name]: e.target.value }))
+    }
 
     function handleSignIn() {
         document.getElementById("nameField").style.maxHeight = "0";
         setTitle("Sign In");
-        setDisable({signUp: true, signIn: false})
+        setDisable({ signUp: true, signIn: false })
     }
 
     function handleSignUp() {
-        document.getElementById("nameField").style.maxHeight = "60px";
-        setTitle("Sign Up");
-        setDisable({signIn: true, signUp: false})
+        // document.getElementById("nameField").style.maxHeight = "60px";
+        // setTitle("Sign Up");
+        // setDisable({ signIn: true, signUp: false })
+
+        console.log("hmm");
+        axios.post("/api/register", values)
+        .then(res => console.log(res))
+    }
+
+    function handleOnSubmit() {
+        console.log("hmm");
+        axios.post("/api/register", {
+
+        })
     }
 
     return (
@@ -27,56 +44,59 @@ export default function SignUp() {
                         <div className="input-group">
                             <div className="input-field" id="nameField">
                                 <i className="fa-solid fa-user"></i>
-                                <input type="text" placeholder="Name" />
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Name"
+                                    onChange={handleValueChange}
+                                    value={values.name}
+                                />
                             </div>
                             <div className="input-field">
                                 <i className="fa-solid fa-envelope"></i>
-                                <input type="email" placeholder="Email" />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    onChange={handleValueChange}
+                                    value={values.email}
+                                />
                             </div>
                             <div className="input-field">
                                 <i className="fa-solid fa-lock" id="nameField"></i>
-                                <input type="password" placeholder="Password" />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    onChange={handleValueChange}
+                                    value={values.password}
+                                />
                             </div>
-                            <p style={{color: "black"}}>Lost password <a href="">Click Here!</a></p>
+                            <p style={{ color: "black" }}>Lost password <a href="">Click Here!</a></p>
                         </div>
                         <div className="btn-field">
                             <button type="button" id="signupBtn"
+                                label="signUp"
+                                onClick={handleSignUp}
+                                onSubmit={handleOnSubmit}
+                                className={disable.signUp ? "disable" : ''}>Sign up</button>
+                        </div>
+
+                        {/* <div className="btn-field">
+                            <button type="button" id="signupBtn"
                             label="signUp"
                             onClick={handleSignUp}
+                            onSubmit={handleOnSubmit}
                             className={disable.signUp ? "disable": ''}>Sign up</button>
                             
                             <button type="button" id="signinBtn"
                             label="signIn"
                             onClick={handleSignIn}
                             className={disable.signIn ? "disable": ''}>Sign in</button>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </div>
-            <script>
-                {/* let signupBtn = document.getElementById("signupBtn");
-      let signinBtn = document.getElementById("signinBtn");
-      let nameField = document.getElementById("nameField");
-      let title = document.getElementById("title");
-
-
-      signinBtn.onclick = function(){
-        nameField.style.maxHeight = "0";
-        title.innerHTML = "Sign In";
-        signupBtn.classList.add("disable");
-        signinBtn.classList.remove("disable");
-      }
-
-      signupBtn.onclick = function(){
-        nameField.style.maxHeight = "60px";
-        title.innerHTML = "Sign In";
-        signupBtn.classList.remove("disable");
-        signinBtn.classList.add("disable");
-
-      } */}
-
-            </script>
-
         </div>
     )
 }

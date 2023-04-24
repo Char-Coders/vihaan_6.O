@@ -16,12 +16,16 @@ router.post('/video/capture', upload.single("data"), function(req, res, next) {
     // fs.createWriteStream('myvideo.webm', { flags: 'a' }).write(blob.buffer);
 
     let formData = new FormData();
-    formData.append("data", Buffer.from(blob))
+    formData.append("data", blob)
     axios.post('http://127.0.0.1:8081/video/capture', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
             }
     })
+    .then(res => console.log(res))
+    
+
+    res.sendStatus(200);
 });
 
 module.exports = router;
