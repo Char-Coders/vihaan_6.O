@@ -7,7 +7,7 @@ export default function Homepage() {
         <div>
             <div className="header">
                 <nav>
-                    <img src="images/logo-removebg-preview.png" className="logo" />
+                    <img src="/home/logo-removebg-preview.png" className="logo" />
                     <div>
                         <button className="sign-up">Sign up</button>
                         <button className="sign-in">Sign in</button>
@@ -26,12 +26,12 @@ export default function Homepage() {
                         </p>
                     </div>
                     <div className="img-col">
-                        <img src="images/facial-recognition.jpg" alt="" />
+                        <img src="/home/facial-recognition.jpg" alt="" />
                     </div>
                 </div>
                 <div className="row">
                     <div className="img-col">
-                        <img src="images/stdasms.jpg" alt="" />
+                        <img src="/home/stdasms.jpg" alt="" />
                     </div>
                     <div className="text-col">
                         <h2>Attendence Systems.</h2>
@@ -44,12 +44,12 @@ export default function Homepage() {
                         <p>This automated system ensures smoother check-ins for events.</p>
                     </div>
                     <div className="img-col">
-                        <img src="images/red-snowflakes-christmas-menu-7--500x500.jpg" alt="" />
+                        <img src="/home/red-snowflakes-christmas-menu-7--500x500.jpg" alt="" />
                     </div>
                 </div>
                 <div className="row">
                     <div className="img-col">
-                        <img src="images/student-management.jpg" alt="" />
+                        <img src="/home/student-management.jpg" alt="" />
                     </div>
                     <div className="text-col">
                         <h2>Modular Data.</h2>
