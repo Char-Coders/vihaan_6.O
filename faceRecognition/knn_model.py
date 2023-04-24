@@ -91,7 +91,7 @@ while True:
         offset = 10
 
         face_section = frame[y - offset : y + h + offset, x - offset : x + h + offset]
-        face_section = cv2.resize(face_section, (100, 100))
+        face_section = cv2.resize(face_section, (80, 80))
 
         out = knn(trainset, face_section.flatten())
 
