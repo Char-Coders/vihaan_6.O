@@ -2,10 +2,15 @@ import cv2
 import numpy as np
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder
 import pickle
 from keras_facenet import FaceNet
+import csv
+import datetime
+
+distinct_names = []
+count_names = dict()
+distinct_names_actual = []
 
 # Initialize FaceNet
 facenet = FaceNet()
@@ -58,7 +63,15 @@ while cap.isOpened():
 
         # Convert label encoding back to original names
         final_name = encoder.inverse_transform(face_name)[0]
+        print(final_name)
+        if [final_name] not in distinct_names:
+            distinct_names += [[final_name]]
         
+        if final_name not in count_names.keys():
+            count_names[final_name] = 1
+        else:
+            count_names[final_name] += count_names[final_name]
+
         # Put label text on bounding box
         label_size, baseline = cv2.getTextSize(final_name, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)
         cv2.rectangle(frame, (x, y), (x + label_size[0], y - label_size[1] - baseline), (0, 255, 0), cv2.FILLED)
@@ -68,9 +81,27 @@ while cap.isOpened():
     cv2.imshow("Face Recognition:", frame)
 
     # Exit if 'q' key is pressed
-    if cv2.waitKey(1) & ord('q') == 27:
-        break
+    # if cv2.waitKey(1) and ord('q') == 27:
+    #     break
+
+    key_pressed=cv2.waitKey(1) & 0xFF
+    if key_pressed ==ord('q'):
+        break 
 
 # Release video capture and close windows
 cap.release()
+print(count_names)
+for i in count_names.keys():
+    if count_names[i] > 2000:
+        distinct_names_actual += [i]
+with open("result.csv", 'w', newline='') as myfile:
+    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+    wr.writerow(['Name', 'Attendence', 'Time'])
+    for word in distinct_names_actual:
+        wr.writerow([[word], 1, datetime.datetime.now().time().__str__()])
+    print("CSV written: result.csv")
+print("========================\nPeople found: ")
+for i in distinct_names_actual:
+    print(i)
+print("========================")
 cv2.destroyAllWindows()
