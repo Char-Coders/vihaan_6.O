@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import Test from './Test'
+import Capture from './components/capture/Capture'
 import Homepage from './components/home/HomePage'
 import SignUp from './components/signUp/signUp'
 
