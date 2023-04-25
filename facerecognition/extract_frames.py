@@ -10,7 +10,7 @@ def extractFrames(name):
     name = sys.argv[1]
     """
     #name = input("Enter your name\n> ")
-    os.chdir("dataset\\")
+    os.chdir("facerecognition\\dataset\\")
     if os.path.isdir(name):
         os.chdir(name)
         if len(os.listdir()) == 0:
@@ -22,6 +22,7 @@ def extractFrames(name):
         print("Creating dataset at dataset\\{0}\n".format(name))
         os.mkdir(name)
         os.chdir(name)
+    os.chdir("..")
 # Opens the inbuilt camera of laptop to capture video.
     cap = cv2.VideoCapture(name + ".webm")
     i = 0
