@@ -3,6 +3,8 @@ import sys
 import os
 
 def extractFrames(name):
+
+    os.mkdir(os.path.dirname(__file__) + "\\dataset\\" + name)
     """ If reading from args
     if len(sys.argv) > 2:
         print("Excess arguments passed.\nExiting...\n")
@@ -10,23 +12,11 @@ def extractFrames(name):
     name = sys.argv[1]
     """
     #name = input("Enter your name\n> ")
-    os.chdir("./dataset/")
-    if os.path.isdir(name):
-        os.chdir(name)
-        if len(os.listdir()) == 0:
-            print("Empty dataset for {0}".format(name))
-        else:
-            print("Dataset for {0} already exists".format(name))
-            sys.exit(0)
-    else:
-        print("Creating dataset at dataset\\{0}\n".format(name))
-        os.mkdir(name)
-        os.chdir(name)
-    os.chdir("../../videos/")
+    
 # Opens the inbuilt camera of laptop to capture video.
-    cap = cv2.VideoCapture(name + ".webm")
+    cap = cv2.VideoCapture(os.path.dirname(__file__) + "\\videos\\" + name + '.webm')
     i = 0
-    os.chdir("../dataset/"+name+"/")
+    #os.chdir("../dataset/"+name+"/")
     while(cap.isOpened() and i < 100):
         ret, frame = cap.read()
 
@@ -37,7 +27,7 @@ def extractFrames(name):
 
         # cv2.imshow("Frames",frame)
         # Save Frame by Frame into disk using imwrite method
-        cv2.imwrite('Frame'+str(i)+'.jpg', frame)
+        cv2.imwrite(os.path.dirname(__file__) + "\\dataset\\" + name + '\\Frame'+str(i)+'.jpg', frame)
         i += 1
 
     cap.release()
