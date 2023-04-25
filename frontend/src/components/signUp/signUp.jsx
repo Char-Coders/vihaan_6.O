@@ -29,7 +29,7 @@ export default function SignUp() {
         axios.post("/api/register", values)
         .then(res => {
             if (res.status == 200) {
-                navigate("/capture")
+                navigate("/capture", {state: {name: values.name}});
             }
         })
     }

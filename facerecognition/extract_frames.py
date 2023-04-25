@@ -2,14 +2,14 @@ import cv2
 import sys
 import os
 
-def main():
+def main(buffer, name):
     """ If reading from args
     if len(sys.argv) > 2:
         print("Excess arguments passed.\nExiting...\n")
         sys.exit(0)
     name = sys.argv[1]
     """
-    name = input("Enter your name\n> ")
+    #name = input("Enter your name\n> ")
     os.chdir("dataset\\")
     if os.path.isdir(name):
         os.chdir(name)
