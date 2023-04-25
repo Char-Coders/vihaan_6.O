@@ -2,7 +2,7 @@ import cv2
 import sys
 import os
 
-def main(buffer, name):
+def extractFrames(name):
     """ If reading from args
     if len(sys.argv) > 2:
         print("Excess arguments passed.\nExiting...\n")
