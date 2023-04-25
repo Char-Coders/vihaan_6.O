@@ -22,6 +22,7 @@ def extractFrames(name):
         print("Creating dataset at dataset\\{0}\n".format(name))
         os.mkdir(name)
         os.chdir(name)
+    os.chdir("..")
 # Opens the inbuilt camera of laptop to capture video.
     cap = cv2.VideoCapture(name + ".webm")
     i = 0
