@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./signUp.css"
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
     const initValues = { name: "", email: "", password: "" };
     const [title, setTitle] = useState('Add User');
     const [disable, setDisable] = useState({ signUp: false, signIn: true })
     const [values, setValues] = useState(initValues)
+    const navigate = useNavigate();
 
     function handleValueChange(e) {
         setValues(prevValues => ({ ...prevValues, [e.target.name]: e.target.value }))
@@ -25,7 +27,11 @@ export default function SignUp() {
 
         console.log("hmm");
         axios.post("/api/register", values)
-        .then(res => console.log(res))
+        .then(res => {
+            if (res.status == 200) {
+                navigate("/capture")
+            }
+        })
     }
 
     function handleOnSubmit() {

@@ -38,10 +38,10 @@ export default function Capture() {
     const handleDownload = useCallback(() => {
         if (recordedChunks.length) {
             const blob = new Blob(recordedChunks, {
-                type: "video/webm",
+                
             });
             let formData = new FormData();
-            formData.append("data", blob)
+            formData.append("file", blob)
             axios.post('/api/video/capture', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
