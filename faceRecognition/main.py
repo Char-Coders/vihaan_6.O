@@ -6,12 +6,12 @@ app = Flask(__name__)
 def hello_world():
     return "Hello, World!"
 
-@app.post('/video/capture')
+@app.post('/api/video/capture')
 def getVideoCap():
     print('hmm')
-    buffer = request.files['data']
+    buffer = request.files.get('file')
     print('got buffer: ')
-    print(len(buffer))
+    print(buffer.read())
     return "done"
 
 @app.post('/api/register')
