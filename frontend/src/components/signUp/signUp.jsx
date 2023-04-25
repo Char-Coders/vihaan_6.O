@@ -4,7 +4,7 @@ import "./signUp.css"
 
 export default function SignUp() {
     const initValues = { name: "", email: "", password: "" };
-    const [title, setTitle] = useState('Sign Up');
+    const [title, setTitle] = useState('Add User');
     const [disable, setDisable] = useState({ signUp: false, signIn: true })
     const [values, setValues] = useState(initValues)
 
@@ -79,7 +79,7 @@ export default function SignUp() {
                                 label="signUp"
                                 onClick={handleSignUp}
                                 onSubmit={handleOnSubmit}
-                                className={disable.signUp ? "disable" : ''}>Sign up</button>
+                                className={disable.signUp ? "disable" : ''}>Add</button>
                         </div>
 
                         {/* <div className="btn-field">
