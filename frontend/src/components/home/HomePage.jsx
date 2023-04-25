@@ -9,6 +9,7 @@ export default function Homepage() {
                 <nav>
                     <img src="/home/logo-removebg-preview.png" className="logo" />
                     <div>
+                        <a href="/adduser"><button className="sign-up">Take Attendance</button></a>
                         <a href="/adduser"><button className="sign-up">Add User</button></a>
                     </div>
                     <div className="header-content">
