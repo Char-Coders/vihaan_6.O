@@ -1,5 +1,5 @@
 from flask import Flask, request
-import extractFrames from extract_frames
+from extract_frames import extractFrames
 
 import os
 

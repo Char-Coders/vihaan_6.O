@@ -41,3 +41,7 @@
       transition: background 1s;
   }
   
+  .btn-field button.disable {
+    background: #eaeaea;
+    color: #555;
+  }

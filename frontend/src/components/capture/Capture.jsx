@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./capture.css"
 
 
@@ -11,11 +11,10 @@ export default function Capture() {
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
     const location = useLocation();
-
+    const navigate = useNavigate();
     const handleDataAvailable = useCallback(
         ({ data }) => {
             if (data.size > 0) {
-                console.log(data);
                 setRecordedChunks((prev) => prev.concat(data));
             }
         },
@@ -24,6 +23,7 @@ export default function Capture() {
 
     const handleStartCaptureClick = useCallback(() => {
         setCapturing(true);
+
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
             mimeType: "video/webm",
         });
@@ -41,8 +41,9 @@ export default function Capture() {
 
     const handleDownload = useCallback(() => {
         if (recordedChunks.length) {
+            console.log("downloading");
             const blob = new Blob(recordedChunks, {
-
+                type: "video/webm"
             });
             let formData = new FormData();
             formData.append("file", blob);
@@ -64,30 +65,35 @@ export default function Capture() {
     };
 
     return (
-        <div class="container">
-            <div class="form-box">
+        <div className="container">
+            <div className="form-box">
 
-            <div className="Container">
-            <Webcam
-                height={400}
-                width={400}
-                audio={false}
-                mirrored={true}
-                ref={webcamRef}
-                videoConstraints={videoConstraints}
-            />
-            {capturing ? (
-                <button onClick={handleStopCaptureClick}>Stop Capture</button>
-            ) : (
-                <button onClick={handleStartCaptureClick}>Start Capture</button>
-            )}
-            {recordedChunks.length > 0 && (
-                <button onClick={handleDownload}>Download</button>
-            )}
-        </div>
+                <div className="Container">
+                    <Webcam
+                        height={400}
+                        width={400}
+                        audio={false}
+                        mirrored={true}
+                        ref={webcamRef}
+                        videoConstraints={videoConstraints}
+                    />
 
-                <div class="btn-field">
-                    <button type="button" id="signupBtn">Start Capture</button>
+
+
+                    {capturing ? (
+                        <div className="btn-field">
+                            <button onClick={handleStopCaptureClick}>Stop Capture</button>
+                        </div>
+                    ) : (
+                        <div className="btn-field">
+                            <button onClick={handleStartCaptureClick}>Start Capture</button>
+                        </div>
+                    )}
+                    {recordedChunks.length > 0 && (
+                        <div className="btn-field">
+                            <button onClick={handleDownload}>Download</button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

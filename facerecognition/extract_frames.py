@@ -10,7 +10,7 @@ def extractFrames(name):
     name = sys.argv[1]
     """
     #name = input("Enter your name\n> ")
-    os.chdir("dataset\\")
+    os.chdir("facerecognition\\dataset\\")
     if os.path.isdir(name):
         os.chdir(name)
         if len(os.listdir()) == 0:
