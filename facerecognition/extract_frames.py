@@ -41,4 +41,4 @@ def extractFrames(name):
     cap.release()
     print("Dataset Saved successfully")
     cv2.destroyAllWindows()
-main()
+
