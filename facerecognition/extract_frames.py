@@ -23,7 +23,7 @@ def extractFrames(name):
         os.mkdir(name)
         os.chdir(name)
 # Opens the inbuilt camera of laptop to capture video.
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(name + ".webm")
     i = 0
     while(cap.isOpened() and i < 100):
         ret, frame = cap.read()
