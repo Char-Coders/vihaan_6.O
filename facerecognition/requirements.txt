@@ -1,0 +1,10 @@
+# Face-recognition requirements
+# Usage: pip install -r requirements.txt
+
+opencv-python
+numpy
+matplotlib
+mtcnn
+keras-facenet
+scikit-learn
+pickle
